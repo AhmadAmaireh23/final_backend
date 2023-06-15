@@ -6,10 +6,10 @@ import User from 'App/Models/User'
 export default class InvoicesController {
   public async getInvoice(ctx: HttpContextContract) {
     var authObject = await ctx.auth.authenticate()
-    var reservationId = ctx.request.input('reservationId')
+    const reservationId = parseInt(ctx.request.input('reservationId'), 10);
 
     try {
-      var result = await Invoice.query().where('reservationId', reservationId).firstOrFail()
+      var result = await Invoice.query().where('reservation_id', reservationId).firstOrFail()
       return result
     } catch (error) {
       return console.log('here', error)
