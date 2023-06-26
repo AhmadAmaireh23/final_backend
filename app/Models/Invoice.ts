@@ -6,9 +6,7 @@ import Reservation from './Reservation';
 export default class Invoice extends BaseModel {
   public static table = 'invoice'
 
-  @column({ isPrimary: true })
-  public id: number
-
+ 
   @column({ serializeAs: "invoice_number" })
   public invoiceNumber: string;
   @column({ serializeAs: "due_date" })
@@ -17,7 +15,7 @@ export default class Invoice extends BaseModel {
   public issueDate: string;
   @column({ serializeAs: "user_id" })
   public userId: Number;
-  @column({ serializeAs: "reservation_id" })
+  @column({ serializeAs: "reservation_id",isPrimary:true })
   public reservationId: Number;
 
   @belongsTo(() => User, {

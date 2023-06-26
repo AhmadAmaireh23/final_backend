@@ -35,8 +35,7 @@ export default class ReservationsController {
         })
       )
       .orderBy('id', 'desc')
-    console.log(result)
-    return result
+      return result
   }
 
   public async getReservation(ctx: HttpContextContract) {
@@ -63,7 +62,6 @@ export default class ReservationsController {
       .preload('user')
       .preload('stadium')
       .firstOrFail()
-    console.log(result)
 
     return result
   }

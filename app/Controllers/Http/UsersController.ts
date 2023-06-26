@@ -81,13 +81,15 @@ export default class UsersController {
     return newUser
   }
 
-  public async update(ctx: HttpContextContract) {
+    public async update(ctx: HttpContextContract) {
     var image = ctx.request.input('image')
     console.log(image)
 
     var object = await ctx.auth.authenticate()
     const newSchema = schema.create({
       firstName: schema.string.nullableAndOptional(),
+      image: schema.string.nullableAndOptional(),
+
       email: schema.string.nullableAndOptional(),
       lastName: schema.string.nullableAndOptional(),
       gender: schema.string.nullableAndOptional(),
@@ -101,12 +103,13 @@ export default class UsersController {
     profile.firstName = fields.firstName!
     profile.email = fields.email!
     profile.lastName = fields.lastName!
-    profile.image = image!
     profile.gender = fields.gender!
     profile.birthDate = fields.birthDate!
     var result = await profile.save()
     return result
   }
+
+
 
   public async updateImage(ctx: HttpContextContract) {
     var object = await ctx.auth.authenticate()

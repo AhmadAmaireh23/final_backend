@@ -4,17 +4,16 @@ import { schema, rules } from '@ioc:Adonis/Core/Validator'
 import User from 'App/Models/User'
 
 export default class InvoicesController {
-  public async getInvoice(ctx: HttpContextContract) {
+ 
+    public async getInvoice(ctx: HttpContextContract) {
     var authObject = await ctx.auth.authenticate()
-    var reservationId = ctx.request.input('reservationId')
+    const reservationId = parseInt(ctx.request.input('reservationId'), 10);
+console.log(reservationId)
 
-    try {
-      var result = await Invoice.query().where('reservationId', reservationId).firstOrFail()
-      return result
-    } catch (error) {
-      return console.log('here', error)
-    }
+    var invoice = await Invoice.findOrFail(reservationId)
+    return invoice
   }
+
 
   public async create(ctx: HttpContextContract) {
     var object = await ctx.auth.authenticate()
@@ -39,3 +38,4 @@ export default class InvoicesController {
     return result
   }
 }
+

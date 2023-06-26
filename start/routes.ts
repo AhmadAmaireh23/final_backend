@@ -48,9 +48,9 @@ Route.group(() => {
   }).prefix('/reservations')
 
   Route.group(() => {
-    Route.get('/payments', 'paymentsController.gets')
-    Route.get('/', 'paymentsController.getAll')
-    Route.post('/', 'paymentsController.create')
+    Route.get('/Payments', 'paymentsController.gets')
+    Route.get('/', 'PaymentsController.getAll')
+    Route.post('/', 'PaymentsController.create')
   }).prefix('/payments')
 
   Route.group(() => {
@@ -58,7 +58,7 @@ Route.group(() => {
   }).prefix('/emails')
 
   Route.group(() => {
-    Route.get('/', 'invoicesController.getInvoice')
-    Route.post('/', 'invoicesController.create')
+    Route.get('/', 'InvoicesController.getInvoice')
+    Route.post('/', 'InvoicesController.create')
   }).prefix('/invoices')
 }).prefix('api')
